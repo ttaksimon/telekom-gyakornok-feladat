@@ -1,4 +1,4 @@
-# NetConf szerver
+# NetConf Manager
 Ezt a feladatot egy gyakornoki kiválasztási folyamat részeként valósítottam meg, **Python** nyelven.
 
 ## Fejlesztői környezet
