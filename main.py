@@ -46,10 +46,13 @@ def main():
 
                 # Get interface statistics
                 elif choice == '2':
+                    utils.print_interface_types()
+                    if_type = input("Select interface type: ")
                     if_name = input("Enter interface name/number (e.g., 1): ")
+                    if_type_str = iface_types.interfaces.get(if_type, "GigabitEthernet")
                     interface_read.get_interface_stats(
                         m, 
-                        interface_number=if_name
+                        interface_number=f"{if_type_str}{if_name}"
                     )
 
                 # Create new Loopback interface

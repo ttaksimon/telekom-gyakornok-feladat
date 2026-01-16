@@ -59,9 +59,10 @@ def get_interface_stats(m, interface_number):
     
     filter_xml = f"""
     <filter xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
-        <interfaces-state xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+        <interfaces-state xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces">
             <interface>
                 <name>{interface_number}</name>
+                <statistics />
             </interface>
         </interfaces-state>
     </filter>
@@ -69,6 +70,12 @@ def get_interface_stats(m, interface_number):
 
     try:
         response = m.get(filter=filter_xml)
+
+        # Handle empty data response
+        if "<data />" in response.data_xml or "<data xmlns" in response.data_xml and \
+            "/>" in response.data_xml.split(">")[-1]:
+            pass
+        
         utils.pretty_print_xml(response.data_xml)
     except Exception as e:
         print(f"An error occurred while fetching interface statistics: {e}")

@@ -80,16 +80,14 @@ def set_interface_mtu(m, interface_type, interface_number, mtu_size):
     """
 
     config_payload = f"""
-    <config>
-        <native xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-native">
-            <interface>
-                <{interface_type}>
-                    <name>{interface_number}</name>
-                    <mtu>{mtu_size}</mtu>
-                </{interface_type}>
-            </interface>
-        </native>
-    </config>
+    <native xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-native">
+        <interface>
+            <{interface_type}>
+                <name>{interface_number}</name>
+                <mtu>{mtu_size}</mtu>
+            </{interface_type}>
+        </interface>
+    </native>
     """
 
     try:
